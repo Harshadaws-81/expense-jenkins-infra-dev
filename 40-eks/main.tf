@@ -3,7 +3,7 @@ resource "aws_key_pair" "eks-key" {
   # you can paste the public key directly like this
   #public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6ONJth+DzeXbU3oGATxjVmoRjPepdl7sBuPzzQT2Nc sivak@BOOK-I6CR3LQ85Q"
   //public_key = file("~/.ssh/eks-key.pub")
-  public_key = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCTDcGhyKZDsB81EqoPTrc643gBjezaT/nQ4XC7qYD8yO2VU/3ls5pz2rNjP0sP1GrgUwliDQ7F4fD/z3iwqVnpvGEwBWww7ZvWb+ALVMqkORnYAi09WdZbbSlLR3CoyIZYHGXTehOxT/vOVhlD6fri0NDimn8gs26dkkYPgay3f/PobVS+uMyRe6kOD3JR27EW4x8I8zj8o6Yd3effEVs8Ec4+pd9+qYg0hehAKuzQrUZgDgXPJS5dn+/LQx9shdJ3mK8NZ77W73xO2KNKWzL+C07e4z0YXehIBY+olBavXBrtyoNfA/OcYzEgieEpqhs8w5hBOk3FwdLVbZE/eQ5hJetR8gV9g7T9HepIwZ93vb9aiC94/qkOyLyKM6ooHbeA61ejhdVGbMVfaYpARZZ+iIRoPD74sVXE47+343+ZhAOcSRqx0eqfeT9FlIiMsMGP4LQzWdElMcUo/C+n/w8s72XlKHwdK359xoZGsl49mNCoWsMXy3lubJiH98TwrX8= kadia@Harsha_Kadiam
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCTDcGhyKZDsB81EqoPTrc643gBjezaT/nQ4XC7qYD8yO2VU/3ls5pz2rNjP0sP1GrgUwliDQ7F4fD/z3iwqVnpvGEwBWww7ZvWb+ALVMqkORnYAi09WdZbbSlLR3CoyIZYHGXTehOxT/vOVhlD6fri0NDimn8gs26dkkYPgay3f/PobVS+uMyRe6kOD3JR27EW4x8I8zj8o6Yd3effEVs8Ec4+pd9+qYg0hehAKuzQrUZgDgXPJS5dn+/LQx9shdJ3mK8NZ77W73xO2KNKWzL+C07e4z0YXehIBY+olBavXBrtyoNfA/OcYzEgieEpqhs8w5hBOk3FwdLVbZE/eQ5hJetR8gV9g7T9HepIwZ93vb9aiC94/qkOyLyKM6ooHbeA61ejhdVGbMVfaYpARZZ+iIRoPD74sVXE47+343+ZhAOcSRqx0eqfeT9FlIiMsMGP4LQzWdElMcUo/C+n/w8s72XlKHwdK359xoZGsl49mNCoWsMXy3lubJiH98TwrX8= kadia@Harsha_Kadiam"
   # ~ means windows home directory
 }
 
@@ -12,7 +12,7 @@ module "eks" {
 
 
   cluster_name    = "${var.project_name}-${var.environment}"
-  cluster_version = "1.30"
+  cluster_version = "1.31"
 
   cluster_endpoint_public_access = true
 
@@ -42,9 +42,9 @@ module "eks" {
 
   eks_managed_node_groups = {
     blue = {
-      min_size     = 2
+      min_size     = 3
       max_size     = 10
-      desired_size = 2
+      desired_size = 3
       #capacity_type = "SPOT"
       iam_role_additional_policies = {
         AmazonEBSCSIDriverPolicy          = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
